@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,12 +28,14 @@ public class Artista {
 	
 	@NotBlank(message = "O nome do artista não pode ser vazio")
 	@Column(nullable = false)
-	@Size(min = 2, max = 50, message = "O nome deve ter entre 2 e 100 caracteres")
+	@Size(min = 2, max = 50, message = "O nome deve ter entre 2 e 50 caracteres")
+	@Schema(description = "Nome do artista", example = "Michael Jackson")
 	private String nome;
 	
 	@NotBlank(message = "A nacionalidade do artista não pode ser vazia")
 	@Column(nullable = false)
-	@Size(min = 2, max = 30, message = "A nacionalidade deve ter entre 2 e 50 caracteres")
+	@Size(min = 2, max = 30, message = "A nacionalidade deve ter entre 2 e 30 caracteres")
+	@Schema(description = "Nacionalidade do artista.", example = "Canadense")
 	private String nacionalidade;
 	
 	@ManyToMany(mappedBy = "artistas")
