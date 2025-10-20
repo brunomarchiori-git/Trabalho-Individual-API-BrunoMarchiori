@@ -4,8 +4,7 @@ import java.util.List;
 
 import org.serratec.TrabalhoIndividualAPI_BrunoMarchiori.enums.GeneroMusical;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +20,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Musica.class)
 @Entity
 @Table(name = "musica")
 public class Musica {
@@ -47,7 +45,7 @@ public class Musica {
 	private List<Artista> artistas;
 
 	@ManyToMany(mappedBy = "musicas")
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+	@JsonIgnore
 	private List<Playlist> playlists;
 
 	public Long getId() {

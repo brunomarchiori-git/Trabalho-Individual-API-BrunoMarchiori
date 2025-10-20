@@ -2,8 +2,7 @@ package org.serratec.TrabalhoIndividualAPI_BrunoMarchiori.domain;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -16,12 +15,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "artista")
 public class Artista {
 
-	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -39,6 +36,7 @@ public class Artista {
 	private String nacionalidade;
 	
 	@ManyToMany(mappedBy = "artistas")
+	@JsonIgnore
 	private List<Musica> musicas;
 
 	public Artista(Long id, String nome, String nacionalidade) {
